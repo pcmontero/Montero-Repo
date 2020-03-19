@@ -1,0 +1,374 @@
+<html>
+<head>
+<title>HS13</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" charset="utf-8" src="Config.js"></script>
+<script type="text/javascript" charset="utf-8" src="Scripts/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="Scripts/main.js"></script>
+<script type="text/javascript" charset="utf-8" src="Scripts/lang.js"></script>
+</head>
+<body id="body" onload="init()">
+<div id="box" onclick="toggle()">
+<div id="inner1">
+<div id="weather"><center>
+<img id="weatherIcon" src="" />
+
+<h1 id="temp"></h2>
+
+<h5 id="lowhigh">
+<a id="high"><br><br><br /></a> <a id="low"></a>
+</h5>
+
+<h6> <div id="city"></div> </h6>
+</center></div>
+<br />
+<div style="float:right;margin-top:-150px;text-align:right;"><div id="clockbox"></div>
+
+<script type="text/javascript">
+if (language == "italian") {
+	var tday=["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Domenica"];
+var tmonth=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+}else if (language == "french") {
+	var tday=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+var tmonth=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","December"];
+}else if (language == "portuguese") {
+ var tday=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]; 
+ var tmonth=["de Janeiro","de Fevereiro","de Março","de Abril","de Maio","de Junho","de Julho","de Agosto","de Setembro","de Outubro","de Novembro","de Dezembro"]; 
+}else {
+	var tday=["Sunday","Monday","Tuesday","Miércoles","Thursday","Friday","Saturday"];
+var tmonth=["January","February","Marzo","April","May","June","July","August","September","October","November","Décembre"];
+}
+function GetClock(){
+var d=new Date();
+var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate();
+var nhour=d.getHours(),nmin=d.getMinutes(),ap;
+var nseconds=d.getSeconds()
+if (clock == false) {
+if(nhour==0){ap=" AM";nhour=12;}
+else if(nhour<12){ap=" AM";}
+else if(nhour==12){ap=" PM";}
+else if(nhour>12){ap=" PM";nhour-=12;}
+}
+if(nmin<=9) nmin="0"+nmin;
+if(nseconds<=9) nseconds="0"+nseconds; 
+if (seconds == true) {
+
+if (dayMonth == false) {
+var clocktext="<h1 style='margin-top:18px;margin-bottom:-10px;margin-top:10px;font-size: 55px;'>"+nhour+":"+nmin+":"+nseconds+"</h1 ><br><h3>"+tday[nday]+"<br>"+tmonth[nmonth]+" "+ndate+"</h3>";
+}else {
+var clocktext="<h1 style='margin-top:18px;margin-bottom:-10px;margin-top:10px;font-size: 55px;'>"+nhour+":"+nmin+" "+nseconds+"</h1 ><br><h3>"+tday[nday]+"<br>"+ndate+" "+tmonth[nmonth]+"</h3>";
+}}else{
+if (dayMonth == false) {
+var clocktext="<h1 style='margin-top:18px;margin-bottom:-10px;margin-top:10px;font-size: 55px;'>"+nhour+":"+nmin+"</h1 ><br><h3>"+tday[nday]+"<br>"+tmonth[nmonth]+" "+ndate+"</h3>";
+}else {
+var clocktext="<h1 style='margin-top:18px;margin-bottom:-10px;margin-top:10px;font-size: 55px;'>"+nhour+":"+nmin+"</h1 ><br><h3>"+tday[nday]+"<br>"+ndate+" "+tmonth[nmonth]+"</h3>";
+}}
+document.getElementById('clockbox').innerHTML=clocktext;
+}
+
+GetClock();
+setInterval(GetClock,1000);
+</script></div>
+</div>
+
+<div id="inner2">
+<div style="height:153;width:153;float:left;margin:0;margin-left:-15px;border-radius:20px 0px 0px 20px;background-size: cover;" id="art"/></div>
+<div id="info"><center>
+<h2 style="height:30px" id="title">&nbsp;Song Title</h2>
+<h4 id="line2">&nbsp;&nbsp;Artist<br />&nbsp;&nbsp;Album</h4>
+<div onclick="toggle2()" id="button">
+	<img id="prev" src="Stuff/last.png" />
+	<img id="play" src="Stuff/play.png" />
+	<img id="next" src="Stuff/next.png" />
+</div></div>
+</center>
+</div>
+
+<div id="inner3"><br />
+<div id="system"><br /></div>
+<div id="statusbar"><br /></div>
+<div id="battery"><br /></div>
+</div>
+
+<center><h1>
+<div id="inner4">
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date(countMonth+ " " + countDay + ", " + countYear + " " + countHour + ":" + countMinute).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+ if (eventName == "") {
+  document.getElementById("inner4").innerHTML = "<br>" + days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s <br><h6>Countdown to " + countMonth+ " " + countDay + ", " + countYear + "</h6>";
+}else {
+document.getElementById("inner4").innerHTML = "<br>" + days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s <br><h6>Countdown to " + eventName + "</h6>";
+}
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("inner4").innerHTML = "Countdown Complete!";
+  }
+}, 1000);
+</script>
+</div>
+</center></h1>
+
+</div>
+</body>
+<style>
+#weather {
+margin-right: 75%;
+}
+#system {
+margin-top: -4;
+}
+#button {
+margin-top: 10px;
+}
+#title {
+overflow:hidden;
+white-space: nowrap;
+overflow-x: scroll;
+overflow-y: clip;
+}
+#line2 {
+overflow:hidden;
+white-space: nowrap;
+overflow-x: scroll;
+overflow-y: clip;
+}
+#inner2 {
+height: 153px;
+display: none;
+margin: 0;
+margin-right: 2px;
+}
+#inner3, #inner4 {
+display: none;
+margin: 0;
+}
+#button img{
+width: 10%;
+margin: 10px;
+}
+#button {
+margin-right: -5px;
+}
+#box {
+height: 153px;
+border-radius: 20px;
+color: white;
+background-position: center;
+background-repeat: no-repeat;
+}
+#temp {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+#inner1, #inner2, #inner3, #inner4 {
+	margin: 15px;
+}
+#weatherIcon {
+height: 35%;
+margin: 0;
+margin-left: -0;
+margin-bottom:-8;
+margin-top:16;
+}
+h6, h5, h2, h4, h1, h3{
+margin: 0;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+</style>
+<script>
+if (stockIcons == true) {
+	document.getElementById('next').src = 'Stuff/stock/next.png';
+	document.getElementById('prev').src = 'Stuff/stock/last.png';
+	document.getElementById('next').style.marginTop = "-60px";
+	document.getElementById('prev').style.marginTop = "-60px";
+	document.getElementById('next').style.marginBottom = "18px";
+	document.getElementById('prev').style.marginBottom = "18px";
+}
+document.getElementById("inner1").style.display = "none";
+document.getElementById("inner"+defaultPage).style.display = "block";
+
+if (infoAlign == "right") {
+document.getElementById('inner3').style.textAlign = "right";
+}else if (infoAlign == "center") {
+document.getElementById('inner3').style.textAlign = "center";
+}else {
+document.getElementById('inner3').style.textAlign = "left";
+}
+if (artBorder == true) {
+document.getElementById('art').style.border = borderWidth + "px solid " + borderColor;
+document.getElementById('art').style.width = 153-borderWidth-borderWidth + "px";
+document.getElementById('art').style.height = 153-borderWidth-borderWidth + "px";
+}
+
+function toggle() {	
+if (pageSwitch == true) {
+if (countdown == false) {
+if (document.getElementById("inner1").style.display == "block") {
+document.getElementById("inner1").style.display = "none";
+document.getElementById("inner2").style.display = "block";
+}else if (document.getElementById("inner2").style.display == "block") {
+document.getElementById("inner2").style.display = "none";
+document.getElementById("inner3").style.display = "block";
+}else {
+document.getElementById("inner3").style.display = "none";
+document.getElementById("inner1").style.display = "block";
+}}else{
+if (document.getElementById("inner1").style.display == "block") {
+document.getElementById("inner1").style.display = "none";
+document.getElementById("inner2").style.display = "block";
+}else if (document.getElementById("inner2").style.display == "block") {
+document.getElementById("inner2").style.display = "none";
+document.getElementById("inner3").style.display = "block";
+}else if (document.getElementById("inner3").style.display == "block") {
+document.getElementById("inner3").style.display = "none";
+document.getElementById("inner4").style.display = "block";
+}else {
+document.getElementById("inner1").style.display = "block";
+document.getElementById("inner4").style.display = "none";
+}}}}
+if(customBackgroundColor == true){
+document.getElementById('box').style.background = customColor;
+document.getElementById('box').style.opacity = opacity;
+}else if(LightBackground == true){
+document.getElementById('box').style.background = "rgba(255, 255, 255, "+opacity+")";}else {
+document.getElementById('box').style.background = "rgba(0, 0, 0, "+opacity+")";
+}
+if(CustomTextColor == true){
+document.getElementById('box').style.color = PickColor;
+}
+
+function toggle2() {
+document.getElementById("inner1").style.display = "block";
+document.getElementById("inner2").style.display = "none";
+document.getElementById("inner3").style.display = "none";
+}
+
+document.getElementById("box").style.backgroundImage = "url('" + image + "')";
+document.getElementById("box").style.backgroundSize = "cover";
+</script>
+<script>
+var doc = document,
+	media = {
+		play: function(){
+			window.location = 'xeninfo:playpause';
+		},
+		next: function(){
+			window.location = 'xeninfo:nexttrack';
+		},
+		prev: function(){
+			window.location = 'xeninfo:prevtrack';
+		}
+	},
+artDiv = doc.getElementById('art');
+doc.getElementById('button').addEventListener('touchstart', function(el){
+	media[el.target.id]();
+});
+
+artDiv.addEventListener('touchstart', function(){
+	window.location = 'xeninfo:openapp:' + musicApp;
+});
+
+
+function mainUpdate(type){
+var artworkPreload;
+if(type == 'music'){
+		if(isplaying){
+
+		if (stockIcons == true) {	document.getElementById('play').src = 'Stuff/stock/pause.png';
+		}else{
+			document.getElementById('play').src = 'Stuff/pause.png';
+			}
+			document.getElementById('title').innerHTML = title;
+			document.getElementById('line2').innerHTML = artist+"<br>"+album;
+			
+			
+			artworkPreload = new Image();
+			artworkPreload.onload = function() {
+			if (backgroundArt == true) {
+document.getElementById("box").style.backgroundImage = "url(" + this.src + ")";
+			}if (showArt == true) {
+				artDiv.style.backgroundImage = "url(" + this.src + ")";}
+			};
+			if (backgroundArt == true) {
+artworkPreload.src = "file:///var/mobile/Documents/Artwork.jpg?" + (new Date()).getTime();
+			}
+			if (showArt == true) {
+			artDiv.style.display = "block";
+			artDiv.style.textAlign = "left";
+			artworkPreload.src = "file:///var/mobile/Documents/Artwork.jpg?" + (new Date()).getTime();
+			}else {
+			artDiv.style.textAlign = "center";
+				artDiv.style.display = "none";
+			}
+			
+			}else{
+			if (stockIcons == true) {
+			document.getElementById('play').src = 'Stuff/stock/play.png';
+		}else{
+			document.getElementById('play').src = 'Stuff/play.png';
+			}
+			document.getElementById('title').innerHTML = "";
+			document.getElementById('line2').innerHTML = "<br>";
+			artDiv.style.display = "none";
+		}
+	}
+
+
+if(type == 'weather'){
+document.getElementById("weather").style.display = "block";
+document.getElementById('high').innerHTML = weather.high + "&deg; /";
+
+document.getElementById('low').innerHTML = weather.low + "&deg;";
+
+document.getElementById('city').innerHTML = weather.city;
+    
+document.getElementById('weatherIcon').src = 'Stuff/' + 'Icons' + '/' + weather.conditionCode + '.png';
+if (feelsLike == true){
+document.getElementById('temp').innerHTML = " " + weather.feelsLike + "&deg;";
+}else{
+document.getElementById('temp').innerHTML = " " + weather.temperature + "&deg;";}
+
+
+}else if (type == "system") {
+document.getElementById('system').innerHTML = deviceType + " iOS " + systemVersion;
+}else if (type == 'statusbar') {
+var wifi = "WiFi: " + wifiName + " " + wifiBars + " bars<br>"
+document.getElementById('statusbar').innerHTML = signalName + " " + signalBars + " bars<br>" + wifi;
+}else if (type == "battery") {
+if (batteryCharging == 0) {
+	var battery = "Not Charging";
+	}else {
+	var battery = "Charging";}
+document.getElementById('battery').innerHTML = batteryPercent + "% Battery, " + battery + "<br>Free Ram: " + ramFree + "<br>Used Ram: " + ramUsed;
+}}
+if (refresh > 0) {
+	setTimeout(function(){
+   window.location.reload(1);
+}, refresh);
+}
+</script>
+</html>
